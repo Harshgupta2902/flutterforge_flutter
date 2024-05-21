@@ -12,13 +12,12 @@ class GoPaths {
   static const verticalTabBarOne = '/vertical_tab_bar_one';
   static const dateSelectOne = '/date_select_one';
   static const marqueeOne = '/marquee_one';
-  static const countingText= '/counting_text';
+  static const countingText = '/counting_text';
 
 //   CalendarTemplate Route
-  static const calendarTemplateOne= '/calendar_template_one';
-
+  static const calendarTemplateOne = '/calendar_template_one';
 
 //   Timeline Route
-  static const timeLineOne= '/timeLineOne';
-
+  static const timeLineOne = '/timeLineOne';
+  static const onboardingTwo = '/onboard_two';
 }

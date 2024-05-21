@@ -15,12 +15,10 @@ class _OnboardingOneViewState extends State<OnboardingOneView> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 16),
         child: Column(
           children: [
             const Spacer(),
-
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
               child: PageView.builder(
@@ -45,11 +43,13 @@ class _OnboardingOneViewState extends State<OnboardingOneView> {
               activeIndex: _selectedIndex,
             ),
             const SizedBox(height: 24),
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(54)),
-              onPressed: () {},
-              child: const Text("Get Started"),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(54)),
+                onPressed: () {},
+                child: const Text("Get Started"),
+              ),
             )
           ],
         ),
