@@ -4,6 +4,7 @@ import 'package:flutterfore_app/components/counting_text/counting_text_one_view.
 import 'package:flutterfore_app/components/date_select_drawer/date_select_one_view.dart';
 import 'package:flutterfore_app/components/marquee/marquee_one_view.dart';
 import 'package:flutterfore_app/components/onboarding/onboarding_one_view.dart';
+import 'package:flutterfore_app/components/onboarding/onboarding_two_view.dart';
 import 'package:flutterfore_app/components/snackbar/snackbar_one.dart';
 import 'package:flutterfore_app/components/social_login/social_login_one_view.dart';
 import 'package:flutterfore_app/components/social_login/social_login_two_view.dart';
@@ -15,7 +16,7 @@ import 'package:flutterfore_app/navigation/go_paths.dart';
 import 'package:go_router/go_router.dart';
 
 final goConfig = GoRouter(
-  initialLocation: GoPaths.timeLineOne,
+  initialLocation: GoPaths.onboardingTwo,
   routes: [
     GoRoute(
       path: GoPaths.home,
@@ -109,6 +110,15 @@ final goConfig = GoRouter(
       path: GoPaths.timeLineOne,
       builder: (context, state) {
         return const TimeLineOne();
+      },
+    ),
+
+    //    Onboarding two Route
+
+    GoRoute(
+      path: GoPaths.onboardingTwo,
+      builder: (context, state) {
+        return const OnBoardingTwoView();
       },
     ),
   ],
