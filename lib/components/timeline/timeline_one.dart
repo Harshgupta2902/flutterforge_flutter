@@ -265,6 +265,13 @@ class _TimeLineOneState extends State<TimeLineOne> {
                   ],
                 ),
               ),
+              Text(
+                DateFormat('MMMM yyyy').format(DateTime.parse(dates.first)),
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: blueGrey,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
               GestureDetector(
                 onTap: () async {
                   getDateRange(++currentIndex);
