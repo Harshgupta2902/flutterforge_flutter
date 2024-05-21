@@ -20,4 +20,5 @@ class GoPaths {
 //   Timeline Route
   static const timeLineOne = '/timeLineOne';
   static const onboardingTwo = '/onboard_two';
+
 }
