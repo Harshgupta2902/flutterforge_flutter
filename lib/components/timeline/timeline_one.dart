@@ -46,120 +46,7 @@ class _TimeLineOneState extends State<TimeLineOne> {
     "2024-05-27"
   ];
 
-  List<List<ClassData>> classData = [
-    [
-      ClassData(
-        startDate: "14/5/2024",
-        className: "Math",
-        classCode: "ABC123",
-        classDuration: "2 hours",
-        classMode: "Offline",
-      ),
-      ClassData(
-        startDate: "25/6/2024",
-        className: "Science",
-        classCode: "ABC456",
-        classDuration: "3 hours",
-        classMode: "Online",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "3/9/2024",
-        className: "History",
-        classCode: "ABC789",
-        classDuration: "1 hours",
-        classMode: "Offline",
-      ),
-      ClassData(
-        startDate: "29/7/2024",
-        className: "English",
-        classCode: "ABC321",
-        classDuration: "2 hours",
-        classMode: "Online",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "22/10/2024",
-        className: "Math",
-        classCode: "ABC654",
-        classDuration: "3 hours",
-        classMode: "Online",
-      ),
-      ClassData(
-        startDate: "6/8/2024",
-        className: "Science",
-        classCode: "ABC987",
-        classDuration: "1 hours",
-        classMode: "Offline",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "15/10/2024",
-        className: "English",
-        classCode: "ABC234",
-        classDuration: "2 hours",
-        classMode: "Online",
-      ),
-      ClassData(
-        startDate: "24/9/2024",
-        className: "History",
-        classCode: "ABC567",
-        classDuration: "2 hours",
-        classMode: "Offline",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "5/11/2024",
-        className: "Science",
-        classCode: "ABC890",
-        classDuration: "1 hours",
-        classMode: "Offline",
-      ),
-      ClassData(
-        startDate: "10/12/2024",
-        className: "Math",
-        classCode: "ABC123",
-        classDuration: "3 hours",
-        classMode: "Online",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "17/12/2024",
-        className: "English",
-        classCode: "ABC456",
-        classDuration: "2 hours",
-        classMode: "Online",
-      ),
-      ClassData(
-        startDate: "19/11/2024",
-        className: "History",
-        classCode: "ABC789",
-        classDuration: "2 hours",
-        classMode: "Offline",
-      )
-    ],
-    [
-      ClassData(
-        startDate: "23/7/2024",
-        className: "Math",
-        classCode: "ABC321",
-        classDuration: "3 hours",
-        classMode: "Online",
-      ),
-      ClassData(
-        startDate: "12/11/2024",
-        className: "Science",
-        classCode: "ABC654",
-        classDuration: "1 hours",
-        classMode: "Offline",
-      )
-    ]
-  ];
+  List<List<ClassData>> classData = [];
 
   _findTodayIndex() {
     DateTime now = DateTime.now();
@@ -205,14 +92,24 @@ class _TimeLineOneState extends State<TimeLineOne> {
       formattedMonth = DateFormat.MMM().format(today);
       formattedWeek = DateFormat.EEEE().format(today);
 
-      startOfWeek = today.add(
-        Duration(days: currentIndex == 0 ? 0 : today.weekday + currentIndex * 7 - 5),
-      );
+      startOfWeek = startOfWeek.add(Duration(days: currentIndex * 7));
       endOfWeek = startOfWeek.add(const Duration(days: 6));
       startDate = DateFormat('yyyy-MM-dd').format(startOfWeek);
       endDate = DateFormat('yyyy-MM-dd').format(endOfWeek);
 
       debugPrint("startOfWeek : $startOfWeek -XX-$endOfWeek--: $startDate-- endDate $endDate");
+
+      // Update the dates list with the new range
+      List<String> newDates = [];
+      for (int i = 0; i < 7; i++) {
+        DateTime currentDate = startOfWeek.add(Duration(days: i));
+        newDates.add(DateFormat('yyyy-MM-dd').format(currentDate));
+      }
+      setState(() {
+        dates.clear();
+        dates.addAll(newDates);
+      });
+
       if (currentIndex == 0) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           _findTodayIndex();
