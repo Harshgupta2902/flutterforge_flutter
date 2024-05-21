@@ -8,13 +8,14 @@ import 'package:flutterfore_app/components/snackbar/snackbar_one.dart';
 import 'package:flutterfore_app/components/social_login/social_login_one_view.dart';
 import 'package:flutterfore_app/components/social_login/social_login_two_view.dart';
 import 'package:flutterfore_app/components/tab_bar/tab_bar_one_view.dart';
+import 'package:flutterfore_app/components/timeline/timeline_one.dart';
 import 'package:flutterfore_app/components/vertical_tab_bar/vertical_tab_bar_one_view.dart';
 import 'package:flutterfore_app/main.dart';
 import 'package:flutterfore_app/navigation/go_paths.dart';
 import 'package:go_router/go_router.dart';
 
 final goConfig = GoRouter(
-  initialLocation: GoPaths.calendarTemplateOne,
+  initialLocation: GoPaths.timeLineOne,
   routes: [
     GoRoute(
       path: GoPaths.home,
@@ -100,6 +101,14 @@ final goConfig = GoRouter(
       path: GoPaths.calendarTemplateOne,
       builder: (context, state) {
         return const CalendarTemplateOne();
+      },
+    ),
+
+    //    timeLine Route
+    GoRoute(
+      path: GoPaths.timeLineOne,
+      builder: (context, state) {
+        return const TimeLineOne();
       },
     ),
   ],

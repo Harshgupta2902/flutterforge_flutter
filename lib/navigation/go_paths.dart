@@ -17,4 +17,8 @@ class GoPaths {
 //   CalendarTemplate Route
   static const calendarTemplateOne= '/calendar_template_one';
 
+
+//   Timeline Route
+  static const timeLineOne= '/timeLineOne';
+
 }
