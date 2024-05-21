@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -47,7 +49,6 @@ class _TimeLineOneState extends State<TimeLineOne> {
   ];
 
   List<List<ClassData>> classData = [];
-
   _findTodayIndex() {
     DateTime now = DateTime.now();
     String todayFormatted = DateFormat('yyyy-MM-dd').format(now);
@@ -109,6 +110,9 @@ class _TimeLineOneState extends State<TimeLineOne> {
         dates.clear();
         dates.addAll(newDates);
       });
+      DateTime startDates = startOfWeek;
+      DateTime endDates = endOfWeek;
+      generateClassData(startDates, endDates);
 
       if (currentIndex == 0) {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -118,6 +122,36 @@ class _TimeLineOneState extends State<TimeLineOne> {
     } finally {
       _isFunctionRunning = false;
       debugPrint("here is the value of finally _isFunctionRunning : $_isFunctionRunning");
+    }
+  }
+
+  void generateClassData(DateTime startDate, DateTime endDate) {
+    // Clear existing data
+    classData.clear();
+
+    // Generate class data for each date in the range
+    for (DateTime date = startDate;
+        date.isBefore(endDate.add(Duration(days: 1)));
+        date = date.add(Duration(days: 1))) {
+      // Dummy class data for the current date
+      List<ClassData> classDataForDate = [];
+
+      // Generate random number of classes for the current date (between 1 and 5)
+      int numberOfClasses = Random().nextInt(5) + 1;
+      for (int i = 0; i < numberOfClasses; i++) {
+        // Generate random class data
+        ClassData classData = ClassData(
+          startDate: DateFormat('d/M/yyyy').format(date),
+          className: "Class ${i + 1}",
+          classCode: "ABC${Random().nextInt(1000)}",
+          classDuration: "${Random().nextInt(4) + 1} hours",
+          classMode: Random().nextBool() ? "Online" : "Offline",
+        );
+
+        classDataForDate.add(classData);
+      }
+
+      classData.add(classDataForDate);
     }
   }
 
